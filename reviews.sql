@@ -1,22 +1,20 @@
 -- TO RUN THIS SCHEMA MAKE SURE YOU ARE IN THE ROOT DIRECTORY OF /DB IN YOUR TERMINAL
 -- psql -l
 -- psql -d postgres
--- \c postgress
+-- \c postgres
 -- \i reviews.sql
 -- \dt
--- SELECT * FROM public."Reviews" LIMIT 5;
+-- SELECT * FROM reviews LIMIT 5;
 
 
--- Table: public.Reviews
+DROP TABLE IF EXISTS reviews CASCADE;
 
-DROP TABLE IF EXISTS public."Reviews";
-
-CREATE TABLE IF NOT EXISTS public."Reviews"
+CREATE TABLE IF NOT EXISTS reviews
 (
     id integer NOT NULL,
     product_id integer NOT NULL,
     rating integer NOT NULL,
-	date character varying(20) COLLATE pg_catalog."default" NOT NULL,
+	date bigint NOT NULL,
     summary character varying(150) COLLATE pg_catalog."default" NOT NULL,
     body character varying(1000) COLLATE pg_catalog."default" NOT NULL,
 	recommend boolean NOT NULL,
@@ -25,11 +23,15 @@ CREATE TABLE IF NOT EXISTS public."Reviews"
     reviewer_email character varying(60) COLLATE pg_catalog."default" NOT NULL,
 	response character varying COLLATE pg_catalog."default",
     helpfulness integer NOT NULL,
-    CONSTRAINT "Reviews_pkey" PRIMARY KEY (id)
+    CONSTRAINT reviews_pkey PRIMARY KEY (id)
 )
 WITH (
     OIDS = FALSE
 )
 TABLESPACE pg_default;
 
-COPY public."Reviews" FROM '/Users/minggui/Immersive/SDC/reviews.csv' DELIMITER ',' CSV HEADER;
+COPY reviews FROM '/Users/minggui/Immersive/SDC/reviews.csv' DELIMITER ',' CSV HEADER;
+
+UPDATE reviews SET date=date/1000;
+
+ALTER TABLE reviews ALTER COLUMN date TYPE timestamp without time zone using to_timestamp(date) AT TIME ZONE 'PST';
