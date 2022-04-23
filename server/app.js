@@ -10,8 +10,8 @@ app.use(express.json());
 
 
 app.get('/reviews', (req, res) => {
-  const productId = 4;
-  const count = 5;
+  const productId = 65660;
+  const count = 10;
   const order = 'newest';
   // const product = {produc};
 
