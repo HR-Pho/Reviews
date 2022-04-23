@@ -4,7 +4,10 @@
   "description": "",
   "main": "MongoSchema.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client-dev": "webpack-dev-server --mode development --open --hot",
+    "server-dev": "nodemon server/index.js",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -19,8 +22,14 @@
   "homepage": "https://github.com/HR-Pho/Reviews#readme",
   "dependencies": {
     "eslint": "^8.13.0",
+    "express": "^4.17.3",
     "mongoose": "^6.3.1",
     "pg": "^8.7.3",
-    "postgres": "^3.0.6"
+    "postgres": "^3.0.6",
+    "webpack": "^5.72.0",
+    "webpack-dev-server": "^4.8.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.9.2"
   }
 }
