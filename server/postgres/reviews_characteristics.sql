@@ -17,7 +17,9 @@ CREATE TABLE IF NOT EXISTS reviews_characteristics
     review_id integer NOT NULL,
     value integer NOT NULL,
     CONSTRAINT reviews_characteristics_pkey PRIMARY KEY (id),
-    CONSTRAINT fk_review FOREIGN KEY(review_id) REFERENCES reviews (id)
+    CONSTRAINT fk_review FOREIGN KEY(review_id) REFERENCES reviews (id),
+    CONSTRAINT fk_characteristics FOREIGN KEY(characteristic_id) REFERENCES characteristics (id)
+
 )
 WITH (
     OIDS = FALSE

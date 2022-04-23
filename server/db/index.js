@@ -25,7 +25,7 @@ const pool = new Pool({
 // pool.connect();
 pool.query('SELECT NOW()', (err, res) => {
   console.log(err, res);
-  pool.end();
+  // pool.end();
 })
 
 module.exports = pool;

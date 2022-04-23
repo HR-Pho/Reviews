@@ -1,11 +1,11 @@
 const pool = require('../db');
 
-// module.exports = {
+module.exports = {
   //add page later
-  const getAll = (productId, count, order) => {
+  getAll: (productId, count, order, cb) => {
 
     const sort =
-    order ==='helpful' ? ' ORBER BY reviews.helpfulness DESC' :
+    order ==='helpful' ? 'ORBER BY reviews.helpfulness DESC' :
     order === 'newest' ? 'ORDER BY reviews.date DESC' :
     'ORDER BY reviews.helpfulness DESC, reviews.date DESC'
 
@@ -28,23 +28,15 @@ const pool = require('../db');
     ${sort}
     LIMIT ${count}`
 
-  //   const queryString = `SELECT row_to_json(t)
-  //   FROM (
-  //   SELECT reviews_photos.id, reviews_photos.url AS url
-  //   FROM reviews_photos
-  //   INNER JOIN reviews
-  //   ON reviews.id = reviews_photos.review_id
-  //   WHERE reviews.product_id = 65660
-  // ) t`
-
     pool.query(queryString, (err, result) => {
       if (err) {
-        return console.error('Error executing query', err)
+        cb(console.error('Error executing query', err))
       } else {
-        console.log(result.rows);
+        // console.log(result.rows);
+        cb(result.rows)
       }
     })
   }
 
-  getAll(65660, 5, 'newest');
-// }
+  // getAll(65660, 5, 'newest');
+}

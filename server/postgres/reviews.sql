@@ -30,8 +30,17 @@ WITH (
 )
 TABLESPACE pg_default;
 
+
 COPY reviews FROM '/Users/minggui/Immersive/SDC/reviews.csv' DELIMITER ',' CSV HEADER;
 
 UPDATE reviews SET date=date/1000;
 
 ALTER TABLE reviews ALTER COLUMN date TYPE timestamp without time zone using to_timestamp(date) AT TIME ZONE 'UTC';
+
+ALTER TABLE reviews ALTER COLUMN date SET DEFAULT NOW();
+
+-- get reviews
+-- index product_id column to get reviews for that product faster
+CREATE INDEX index_reviews_product_id ON reviews (product_id);
+-- make sure your query plan says "Index Scan"
+EXPLAIN ANALYZE SELECT * FROM reviews WHERE product_id = '65660';

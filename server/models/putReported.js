@@ -1,12 +1,14 @@
 const pool = require('../db');
 
 module.exports = {
-  getMeta: (productId, cb) => {
+
+  update: (reviewID, cb) => {
+
     const queryString = `
-    SELECT 
-
-
-    `;
+      UPDATE reviews
+      SET reported = TRUE
+      WHERE id = ${reviewID}
+    `
     pool.query(queryString, (err, result) => {
       if (err) {
         cb(err)
@@ -15,5 +17,4 @@ module.exports = {
       }
     })
   }
-
 }
