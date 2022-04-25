@@ -16,9 +16,6 @@ module.exports = {
     WHERE product_id = 65660
     GROUP BY recommended;
 
-    ;
-
-
     `;
     pool.query(queryString, (err, result) => {
       if (err) {

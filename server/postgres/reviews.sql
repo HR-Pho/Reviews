@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS reviews CASCADE;
 
 CREATE TABLE IF NOT EXISTS reviews
 (
-    id integer NOT NULL,
+    id serial NOT NULL,
     product_id integer NOT NULL,
     rating integer NOT NULL,
 	date bigint NOT NULL,
