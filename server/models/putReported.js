@@ -18,3 +18,7 @@ module.exports = {
     })
   }
 }
+
+// EXPLAIN ANALYZE UPDATE reviews
+// SET reported = TRUE
+// WHERE id = 378783;

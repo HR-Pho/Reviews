@@ -13,7 +13,7 @@ module.exports = {
         cb(console.error('Error executing query', err))
       } else {
         // console.log(result);
-        cb(result.rows)
+        cb('Created')
       }
     })
   }
@@ -34,3 +34,7 @@ module.exports = {
 
 //   SELECT * FROM reviews WHERE id = newid;
 // `
+
+
+// EXPLAIN ANALYZE INSERT INTO reviews (product_id, rating, date, summary, body, recommend, reported, reviewer_name, reviewer_email, helpfulness)
+//         VALUES (65661, 5, DEFAULT, 'Ut dolore odio beatae ut laborum.', 'Reiciendis consequatur doloribus rem maiores maxime cum. Velit eum ut explicabo quas consequatur sed quo. Magni pariatur inventore consequatur quia saepe reprehenderit tempora voluptas. Et natus maiores facilis illo voluptatem voluptatibus nihil. Beatae non dolor sint qui. Deserunt blanditiis corporis delectus sit possimus.', true, DEFAULT, 'Cassandra', 'cassandra@gmail.com', 0) RETURNING id;

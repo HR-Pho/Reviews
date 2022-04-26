@@ -21,7 +21,7 @@ app.get('/reviews', (req, res) => {
 
   reviews.getAll(page, productId, count, order, (err, result) => {
     if (err) {
-      res.status(500).send(err);
+      res.send(err);
     } else {
       console.log('SUCCESSFUL GET REVIEWS');
       res.send(result);
@@ -46,7 +46,7 @@ app.post('/reviews', (req, res) => {
       res.send(err);
     } else {
       console.log('SUCCESSFUL POST REVIEW');
-      res.send('Created');
+      res.send(result);
     }
   })
 })

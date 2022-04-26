@@ -19,3 +19,7 @@ module.exports = {
   }
 
 }
+
+// EXPLAIN ANALYZE UPDATE reviews
+// SET helpfulness = helpfulness + 1
+// WHERE id = 378783;
