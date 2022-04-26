@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS reviews_photos;
 
 CREATE TABLE IF NOT EXISTS reviews_photos
 (
-    id integer NOT NULL,
+    id bigserial,
     review_id integer NOT NULL,
     url character varying(500) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT reviews_photos_pkey PRIMARY KEY (id),
@@ -25,3 +25,8 @@ TABLESPACE pg_default;
 
 
 COPY reviews_photos FROM '/Users/minggui/Immersive/SDC/reviews_photos.csv' DELIMITER ',' CSV HEADER;
+
+-- the id's might not be in order.
+-- use \d to see which rows are sequential
+-- use the below so you get the last id
+SELECT setval('reviews_photos_id_seq', (SELECT MAX(id) FROM reviews_photos));

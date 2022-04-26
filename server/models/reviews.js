@@ -1,8 +1,8 @@
 const pool = require('../db');
 
 module.exports = {
-  //add page later
-  getAll: (productId, count, order, cb) => {
+
+  getAll: (page, productId, count, order, cb) => {
 
     const sort =
     order ==='helpful' ? 'ORBER BY reviews.helpfulness DESC' :
@@ -26,14 +26,15 @@ module.exports = {
     WHERE reviews.product_id = ${productId}
     AND reviews.reported = FALSE
     ${sort}
-    LIMIT ${count}`
+    LIMIT ${count}
+    OFFSET ${count * page - count}`
 
     pool.query(queryString, (err, result) => {
       if (err) {
         cb(console.error('Error executing query', err))
       } else {
         // console.log(result.rows);
-        cb(result.rows)
+        cb({product: productId, page: page, count: count, results: result.rows})
       }
     })
   }

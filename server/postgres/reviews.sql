@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS reviews CASCADE;
 
 CREATE TABLE IF NOT EXISTS reviews
 (
-    id serial NOT NULL,
+    id bigserial,
     product_id integer NOT NULL,
     rating integer NOT NULL,
 	date bigint NOT NULL,
@@ -31,6 +31,7 @@ WITH (
 TABLESPACE pg_default;
 
 
+
 COPY reviews FROM '/Users/minggui/Immersive/SDC/reviews.csv' DELIMITER ',' CSV HEADER;
 
 UPDATE reviews SET date=date/1000;
@@ -44,3 +45,8 @@ ALTER TABLE reviews ALTER COLUMN date SET DEFAULT NOW();
 CREATE INDEX index_reviews_product_id ON reviews (product_id);
 -- make sure your query plan says "Index Scan"
 EXPLAIN ANALYZE SELECT * FROM reviews WHERE product_id = '65660';
+
+-- the id's might not be in order.
+-- use \d to see which rows are sequential
+-- use the below so you get the last id
+SELECT setval('reviews_id_seq', (SELECT MAX(id) FROM reviews));

@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS reviews_characteristics;
 
 CREATE TABLE IF NOT EXISTS reviews_characteristics
 (
-    id integer NOT NULL,
+    id bigserial,
     characteristic_id integer NOT NULL,
     review_id integer NOT NULL,
     value integer NOT NULL,
@@ -28,3 +28,7 @@ TABLESPACE pg_default;
 
 COPY reviews_characteristics FROM '/Users/minggui/Immersive/SDC/characteristic_reviews.csv' DELIMITER ',' CSV HEADER;
 
+-- the id's might not be in order.
+-- use \d to see which rows are sequential
+-- use the below so you get the last id
+SELECT setval('reviews_characteristics_id_seq', (SELECT MAX(id) FROM reviews_characteristics));
