@@ -38,8 +38,10 @@ app.post('/reviews', (req, res) => {
   const recommend = req.query.recommend;
   const name = req.query.name;
   const email = req.query.email;
-  const photos = req.query.photos;
-  const characteristics = req.query.characteristics;
+  // const photos = req.query.photos;
+  // const characteristics = req.query.characteristics;
+
+  // console.log(req.query)
 
   post.addOne(product_id, rating, summary, body, recommend, name, email, (err, result) => {
     if (err) {

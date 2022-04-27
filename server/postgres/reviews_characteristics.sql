@@ -28,6 +28,9 @@ TABLESPACE pg_default;
 
 COPY reviews_characteristics FROM '/Users/minggui/Immersive/SDC/characteristic_reviews.csv' DELIMITER ',' CSV HEADER;
 
+CREATE INDEX index_reviews_characteristics_review_id ON reviews_characteristics (review_id);
+CREATE INDEX index_reviews_characteristics_characteristic_id ON reviews_characteristics (characteristic_id);
+
 -- the id's might not be in order.
 -- use \d to see which rows are sequential
 -- use the below so you get the last id

@@ -23,6 +23,7 @@ WITH (
 )
 TABLESPACE pg_default;
 
+CREATE INDEX index_reviews_photos_review_id ON reviews_photos (review_id);
 
 COPY reviews_photos FROM '/Users/minggui/Immersive/SDC/reviews_photos.csv' DELIMITER ',' CSV HEADER;
 
